@@ -1,0 +1,1958 @@
+(gdb) thread apply all info stack
+
+Thread 94 (Thread 0x7f2c2411b700 (LWP 5551)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x0000000000d8aa6a in native_cond_wait (
+    mutex=0x1e90400 <Per_thread_connection_handler::LOCK_thread_cache>,
+    cond=0x1e903c0 <Per_thread_connection_handler::COND_thread_cache>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/include/thr_cond.h:140
+#2  my_cond_wait (mp=0x1e90400 <Per_thread_connection_handler::LOCK_thread_cache>,
+    cond=0x1e903c0 <Per_thread_connection_handler::COND_thread_cache>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/include/thr_cond.h:195
+#3  inline_mysql_cond_wait (mutex=0x1e90400 <Per_thread_connection_handler::LOCK_thread_cache>,
+    src_file=0x15932f0 "/export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/conn_handler/connection_handler_per_thread.cc", src_line=145,
+    that=0x1e903c0 <Per_thread_connection_handler::COND_thread_cache>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/include/mysql/psi/mysql_thread.h:1184
+#4  Per_thread_connection_handler::block_until_new_connection ()
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/conn_handler/connection_handler_per_thread.cc:145
+#5  0x0000000000d8abf2 in handle_connection (arg=arg@entry=0x2b95f70)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/conn_handler/connection_handler_per_thread.cc:329
+#6  0x000000000126de04 in pfs_spawn_thread (arg=0x352eae0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/perfschema/pfs.cc:2188
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c2411b700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 93 (Thread 0x7f2c963b3700 (LWP 5282)):
+#0  0x00007f2c9dfa83fa in do_sigwaitinfo (info=0x7f2c963b2e30, set=0x7f2c963b2db0)
+    at ../sysdeps/unix/sysv/linux/sigwaitinfo.c:55
+#1  __GI___sigwaitinfo (set=set@entry=0x7f2c963b2db0, info=info@entry=0x7f2c963b2e30)
+    at ../sysdeps/unix/sysv/linux/sigwaitinfo.c:82
+#2  0x0000000000eff7eb in timer_notify_thread_func (arg=arg@entry=0x7ffed5569390)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/mysys/posix_timers.c:77
+#3  0x000000000126de04 in pfs_spawn_thread (arg=0x24aa600)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/perfschema/pfs.cc:2188
+#4  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c963b3700) at pthread_create.c:308
+#5  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 92 (Thread 0x7f2c89733700 (LWP 5283)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9486a000, min_nr=1, nr=256, events=0x27b0240,
+    timeout=0x7f2c89732970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c89732de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c89732de0, m1=m1@entry=0x7f2c89732e80,
+    m2=m2@entry=0x7f2c89732e88, request=request@entry=0x7f2c89732e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c89732e90, m2=0x7f2c89732e88, m1=0x7f2c89732e80,
+    global_segment=0)
+
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=0, m1=m1@entry=0x7f2c89732e80, m2=m2@entry=0x7f2c89732e88,
+    request=request@entry=0x7f2c89732e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c89733700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 91 (Thread 0x7f2c88f32700 (LWP 5284)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94867000, min_nr=1, nr=256, events=0x27c2520,
+    timeout=0x7f2c88f31970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c88f31de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c88f31de0, m1=m1@entry=0x7f2c88f31e80,
+    m2=m2@entry=0x7f2c88f31e88, request=request@entry=0x7f2c88f31e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c88f31e90, m2=0x7f2c88f31e88, m1=0x7f2c88f31e80,
+    global_segment=1)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=1, m1=m1@entry=0x7f2c88f31e80, m2=m2@entry=0x7f2c88f31e88,
+    request=request@entry=0x7f2c88f31e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=1)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c88f32700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 90 (Thread 0x7f2c88731700 (LWP 5285)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9f9de000, min_nr=1, nr=256, events=0x7f2c948d3010,
+    timeout=0x7f2c88730970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c88730de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c88730de0, m1=m1@entry=0x7f2c88730e80,
+    m2=m2@entry=0x7f2c88730e88, request=request@entry=0x7f2c88730e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c88730e90, m2=0x7f2c88730e88, m1=0x7f2c88730e80,
+    global_segment=2)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+
+#4  os_aio_handler (segment=segment@entry=2, m1=m1@entry=0x7f2c88730e80, m2=m2@entry=0x7f2c88730e88,
+    request=request@entry=0x7f2c88730e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=2)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c88731700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 89 (Thread 0x7f2c87f30700 (LWP 5286)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9f7e3000, min_nr=1, nr=256, events=0x7f2c948d5010,
+    timeout=0x7f2c87f2f970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c87f2fde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c87f2fde0, m1=m1@entry=0x7f2c87f2fe80,
+    m2=m2@entry=0x7f2c87f2fe88, request=request@entry=0x7f2c87f2fe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c87f2fe90, m2=0x7f2c87f2fe88, m1=0x7f2c87f2fe80,
+    global_segment=3)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=3, m1=m1@entry=0x7f2c87f2fe80, m2=m2@entry=0x7f2c87f2fe88,
+    request=request@entry=0x7f2c87f2fe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=3)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c87f30700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 88 (Thread 0x7f2c8772f700 (LWP 5287)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948d0000, min_nr=1, nr=256, events=0x7f2c948d7010,
+    timeout=0x7f2c8772e970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c8772ede0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c8772ede0, m1=m1@entry=0x7f2c8772ee80,
+    m2=m2@entry=0x7f2c8772ee88, request=request@entry=0x7f2c8772ee90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c8772ee90, m2=0x7f2c8772ee88, m1=0x7f2c8772ee80,
+    global_segment=4)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=4, m1=m1@entry=0x7f2c8772ee80, m2=m2@entry=0x7f2c8772ee88,
+    request=request@entry=0x7f2c8772ee90)
+
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=4)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c8772f700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 87 (Thread 0x7f2c86f2e700 (LWP 5288)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948cd000, min_nr=1, nr=256, events=0x7f2c948d9010,
+    timeout=0x7f2c86f2d970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c86f2dde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c86f2dde0, m1=m1@entry=0x7f2c86f2de80,
+    m2=m2@entry=0x7f2c86f2de88, request=request@entry=0x7f2c86f2de90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c86f2de90, m2=0x7f2c86f2de88, m1=0x7f2c86f2de80,
+    global_segment=5)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=5, m1=m1@entry=0x7f2c86f2de80, m2=m2@entry=0x7f2c86f2de88,
+    request=request@entry=0x7f2c86f2de90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=5)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c86f2e700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 86 (Thread 0x7f2c8672d700 (LWP 5289)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948ca000, min_nr=1, nr=256, events=0x7f2c948db010,
+    timeout=0x7f2c8672c970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c8672cde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c8672cde0, m1=m1@entry=0x7f2c8672ce80,
+    m2=m2@entry=0x7f2c8672ce88, request=request@entry=0x7f2c8672ce90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c8672ce90, m2=0x7f2c8672ce88, m1=0x7f2c8672ce80,
+    global_segment=6)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=6, m1=m1@entry=0x7f2c8672ce80, m2=m2@entry=0x7f2c8672ce88,
+    request=request@entry=0x7f2c8672ce90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=6)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c8672d700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 85 (Thread 0x7f2c85f2c700 (LWP 5290)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948c7000, min_nr=1, nr=256, events=0x7f2c948dd010,
+    timeout=0x7f2c85f2b970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c85f2bde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c85f2bde0, m1=m1@entry=0x7f2c85f2be80,
+    m2=m2@entry=0x7f2c85f2be88, request=request@entry=0x7f2c85f2be90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c85f2be90, m2=0x7f2c85f2be88, m1=0x7f2c85f2be80,
+    global_segment=7)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=7, m1=m1@entry=0x7f2c85f2be80, m2=m2@entry=0x7f2c85f2be88,
+    request=request@entry=0x7f2c85f2be90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=7)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c85f2c700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 84 (Thread 0x7f2c8572b700 (LWP 5291)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948c4000, min_nr=1, nr=256, events=0x7f2c948df010,
+    timeout=0x7f2c8572a970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c8572ade0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c8572ade0, m1=m1@entry=0x7f2c8572ae80,
+    m2=m2@entry=0x7f2c8572ae88, request=request@entry=0x7f2c8572ae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c8572ae90, m2=0x7f2c8572ae88, m1=0x7f2c8572ae80,
+    global_segment=8)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=8, m1=m1@entry=0x7f2c8572ae80, m2=m2@entry=0x7f2c8572ae88,
+    request=request@entry=0x7f2c8572ae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=8)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase
+/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c8572b700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 83 (Thread 0x7f2c84f2a700 (LWP 5292)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948c1000, min_nr=1, nr=256, events=0x7f2c948e1010,
+    timeout=0x7f2c84f29970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c84f29de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c84f29de0, m1=m1@entry=0x7f2c84f29e80,
+    m2=m2@entry=0x7f2c84f29e88, request=request@entry=0x7f2c84f29e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c84f29e90, m2=0x7f2c84f29e88, m1=0x7f2c84f29e80,
+    global_segment=9)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=9, m1=m1@entry=0x7f2c84f29e80, m2=m2@entry=0x7f2c84f29e88,
+    request=request@entry=0x7f2c84f29e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=9)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c84f2a700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 82 (Thread 0x7f2c84729700 (LWP 5293)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948be000, min_nr=1, nr=256, events=0x7f2c948e3010,
+    timeout=0x7f2c84728970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c84728de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c84728de0, m1=m1@entry=0x7f2c84728e80,
+    m2=m2@entry=0x7f2c84728e88, request=request@entry=0x7f2c84728e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c84728e90, m2=0x7f2c84728e88, m1=0x7f2c84728e80,
+    global_segment=10)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=10, m1=m1@entry=0x7f2c84728e80, m2=m2@entry=0x7f2c84728e88,
+    request=request@entry=0x7f2c84728e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=10)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c84729700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 81 (Thread 0x7f2c83f28700 (LWP 5294)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948bb000, min_nr=1, nr=256, events=0x7f2c948e5010,
+    timeout=0x7f2c83f27970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c83f27de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c83f27de0, m1=m1@entry=0x7f2c83f27e80,
+    m2=m2@entry=0x7f2c83f27e88, request=request@entry=0x7f2c83f27e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c83f27e90, m2=0x7f2c83f27e88, m1=0x7f2c83f27e80,
+    global_segment=11)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=11, m1=m1@entry=0x7f2c83f27e80, m2=m2@entry=0x7f2c83f27e88,
+    request=request@entry=0x7f2c83f27e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=11)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c83f28700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 80 (Thread 0x7f2c83727700 (LWP 5295)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948b8000, min_nr=1, nr=256, events=0x7f2c948e7010,
+    timeout=0x7f2c83726970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c83726de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c83726de0, m1=m1@entry=0x7f2c83726e80,
+    m2=m2@entry=0x7f2c83726e88, request=request@entry=0x7f2c83726e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c83726e90, m2=0x7f2c83726e88, m1=0x7f2c83726e80,
+    global_segment=12)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=12, m1=m1@entry=0x7f2c83726e80, m2=m2@entry=0x7f2c83726e88,
+    request=request@entry=0x7f2c83726e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=12)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c83727700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 79 (Thread 0x7f2c82f26700 (LWP 5296)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948b5000, min_nr=1, nr=256, events=0x7f2c948e9010,
+    timeout=0x7f2c82f25970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c82f25de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c82f25de0, m1=m1@entry=0x7f2c82f25e80,
+    m2=m2@entry=0x7f2c82f25e88, request=request@entry=0x7f2c82f25e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c82f25e90, m2=0x7f2c82f25e88, m1=0x7f2c82f25e80,
+    global_segment=13)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=13, m1=m1@entry=0x7f2c82f25e80, m2=m2@entry=0x7f2c82f25e88,
+    request=request@entry=0x7f2c82f25e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=13)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c82f26700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 78 (Thread 0x7f2c82725700 (LWP 5297)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948b2000, min_nr=1, nr=256, events=0x7f2c948eb010,
+    timeout=0x7f2c82724970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c82724de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c82724de0, m1=m1@entry=0x7f2c82724e80,
+    m2=m2@entry=0x7f2c82724e88, request=request@entry=0x7f2c82724e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c82724e90, m2=0x7f2c82724e88, m1=0x7f2c82724e80,
+    global_segment=14)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=14, m1=m1@entry=0x7f2c82724e80, m2=m2@entry=0x7f2c82724e88,
+    request=request@entry=0x7f2c82724e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=14)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c82725700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+
+Thread 77 (Thread 0x7f2c81f24700 (LWP 5298)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948af000, min_nr=1, nr=256, events=0x7f2c948ed010,
+    timeout=0x7f2c81f23970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c81f23de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c81f23de0, m1=m1@entry=0x7f2c81f23e80,
+    m2=m2@entry=0x7f2c81f23e88, request=request@entry=0x7f2c81f23e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c81f23e90, m2=0x7f2c81f23e88, m1=0x7f2c81f23e80,
+    global_segment=15)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=15, m1=m1@entry=0x7f2c81f23e80, m2=m2@entry=0x7f2c81f23e88,
+    request=request@entry=0x7f2c81f23e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=15)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c81f24700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 76 (Thread 0x7f2c81723700 (LWP 5299)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948ac000, min_nr=1, nr=256, events=0x7f2c948ef010,
+    timeout=0x7f2c81722970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c81722de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c81722de0, m1=m1@entry=0x7f2c81722e80,
+    m2=m2@entry=0x7f2c81722e88, request=request@entry=0x7f2c81722e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c81722e90, m2=0x7f2c81722e88, m1=0x7f2c81722e80,
+    global_segment=16)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=16, m1=m1@entry=0x7f2c81722e80, m2=m2@entry=0x7f2c81722e88,
+    request=request@entry=0x7f2c81722e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=16)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c81723700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 75 (Thread 0x7f2c80f22700 (LWP 5300)):
+
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948a9000, min_nr=1, nr=256, events=0x7f2c948f1010,
+    timeout=0x7f2c80f21970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c80f21de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c80f21de0, m1=m1@entry=0x7f2c80f21e80,
+    m2=m2@entry=0x7f2c80f21e88, request=request@entry=0x7f2c80f21e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c80f21e90, m2=0x7f2c80f21e88, m1=0x7f2c80f21e80,
+    global_segment=17)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=17, m1=m1@entry=0x7f2c80f21e80, m2=m2@entry=0x7f2c80f21e88,
+    request=request@entry=0x7f2c80f21e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=17)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c80f22700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 74 (Thread 0x7f2c80721700 (LWP 5301)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948a6000, min_nr=1, nr=256, events=0x7f2c948f3010,
+    timeout=0x7f2c80720970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c80720de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c80720de0, m1=m1@entry=0x7f2c80720e80,
+    m2=m2@entry=0x7f2c80720e88, request=request@entry=0x7f2c80720e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c80720e90, m2=0x7f2c80720e88, m1=0x7f2c80720e80,
+    global_segment=18)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=18, m1=m1@entry=0x7f2c80720e80, m2=m2@entry=0x7f2c80720e88,
+    request=request@entry=0x7f2c80720e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=18)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c80721700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 73 (Thread 0x7f2c7ff20700 (LWP 5302)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948a3000, min_nr=1, nr=256, events=0x7f2c948f5010,
+    timeout=0x7f2c7ff1f970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7ff1fde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7ff1fde0, m1=m1@entry=0x7f2c7ff1fe80,
+    m2=m2@entry=0x7f2c7ff1fe88, request=request@entry=0x7f2c7ff1fe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7ff1fe90, m2=0x7f2c7ff1fe88, m1=0x7f2c7ff1fe80,
+    global_segment=19)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=19, m1=m1@entry=0x7f2c7ff1fe80, m2=m2@entry=0x7f2c7ff1fe88,
+    request=request@entry=0x7f2c7ff1fe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=19)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7ff20700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 72 (Thread 0x7f2c7f71f700 (LWP 5303)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c948a0000, min_nr=1, nr=256, events=0x7f2c948f7010,
+    timeout=0x7f2c7f71e970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7f71ede0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7f71ede0, m1=m1@entry=0x7f2c7f71ee80,
+    m2=m2@entry=0x7f2c7f71ee88, request=request@entry=0x7f2c7f71ee90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7f71ee90, m2=0x7f2c7f71ee88, m1=0x7f2c7f71ee80,
+    global_segment=20)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=20, m1=m1@entry=0x7f2c7f71ee80, m2=m2@entry=0x7f2c7f71ee88,
+    request=request@entry=0x7f2c7f71ee90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=20)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7f71f700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 71 (Thread 0x7f2c7ef1e700 (LWP 5304)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9489d000, min_nr=1, nr=256, events=0x7f2c948f9010,
+    timeout=0x7f2c7ef1d970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7ef1dde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase
+/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7ef1dde0, m1=m1@entry=0x7f2c7ef1de80,
+    m2=m2@entry=0x7f2c7ef1de88, request=request@entry=0x7f2c7ef1de90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7ef1de90, m2=0x7f2c7ef1de88, m1=0x7f2c7ef1de80,
+    global_segment=21)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=21, m1=m1@entry=0x7f2c7ef1de80, m2=m2@entry=0x7f2c7ef1de88,
+    request=request@entry=0x7f2c7ef1de90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=21)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7ef1e700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 70 (Thread 0x7f2c7e71d700 (LWP 5305)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9489a000, min_nr=1, nr=256, events=0x7f2c948fb010,
+    timeout=0x7f2c7e71c970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7e71cde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7e71cde0, m1=m1@entry=0x7f2c7e71ce80,
+    m2=m2@entry=0x7f2c7e71ce88, request=request@entry=0x7f2c7e71ce90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7e71ce90, m2=0x7f2c7e71ce88, m1=0x7f2c7e71ce80,
+    global_segment=22)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=22, m1=m1@entry=0x7f2c7e71ce80, m2=m2@entry=0x7f2c7e71ce88,
+    request=request@entry=0x7f2c7e71ce90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=22)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7e71d700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 69 (Thread 0x7f2c7df1c700 (LWP 5306)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94897000, min_nr=1, nr=256, events=0x7f2c948fd010,
+    timeout=0x7f2c7df1b970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7df1bde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7df1bde0, m1=m1@entry=0x7f2c7df1be80,
+
+    m2=m2@entry=0x7f2c7df1be88, request=request@entry=0x7f2c7df1be90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7df1be90, m2=0x7f2c7df1be88, m1=0x7f2c7df1be80,
+    global_segment=23)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=23, m1=m1@entry=0x7f2c7df1be80, m2=m2@entry=0x7f2c7df1be88,
+    request=request@entry=0x7f2c7df1be90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=23)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7df1c700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 68 (Thread 0x7f2c7d71b700 (LWP 5307)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94894000, min_nr=1, nr=256, events=0x7f2c948ff010,
+    timeout=0x7f2c7d71a970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7d71ade0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7d71ade0, m1=m1@entry=0x7f2c7d71ae80,
+    m2=m2@entry=0x7f2c7d71ae88, request=request@entry=0x7f2c7d71ae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7d71ae90, m2=0x7f2c7d71ae88, m1=0x7f2c7d71ae80,
+    global_segment=24)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=24, m1=m1@entry=0x7f2c7d71ae80, m2=m2@entry=0x7f2c7d71ae88,
+    request=request@entry=0x7f2c7d71ae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=24)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7d71b700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 67 (Thread 0x7f2c7cf1a700 (LWP 5308)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94891000, min_nr=1, nr=256, events=0x7f2c94901010,
+    timeout=0x7f2c7cf19970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7cf19de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7cf19de0, m1=m1@entry=0x7f2c7cf19e80,
+    m2=m2@entry=0x7f2c7cf19e88, request=request@entry=0x7f2c7cf19e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase
+/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7cf19e90, m2=0x7f2c7cf19e88, m1=0x7f2c7cf19e80,
+    global_segment=25)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=25, m1=m1@entry=0x7f2c7cf19e80, m2=m2@entry=0x7f2c7cf19e88,
+    request=request@entry=0x7f2c7cf19e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=25)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7cf1a700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 66 (Thread 0x7f2c7c719700 (LWP 5309)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9488e000, min_nr=1, nr=256, events=0x7f2c94903010,
+    timeout=0x7f2c7c718970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7c718de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7c718de0, m1=m1@entry=0x7f2c7c718e80,
+    m2=m2@entry=0x7f2c7c718e88, request=request@entry=0x7f2c7c718e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7c718e90, m2=0x7f2c7c718e88, m1=0x7f2c7c718e80,
+    global_segment=26)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=26, m1=m1@entry=0x7f2c7c718e80, m2=m2@entry=0x7f2c7c718e88,
+    request=request@entry=0x7f2c7c718e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=26)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7c719700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 65 (Thread 0x7f2c7bf18700 (LWP 5310)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9488b000, min_nr=1, nr=256, events=0x7f2c94905010,
+    timeout=0x7f2c7bf17970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7bf17de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7bf17de0, m1=m1@entry=0x7f2c7bf17e80,
+    m2=m2@entry=0x7f2c7bf17e88, request=request@entry=0x7f2c7bf17e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7bf17e90, m2=0x7f2c7bf17e88, m1=0x7f2c7bf17e80,
+    global_segment=27)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=27, m1=m1@entry=0x7f2c7bf17e80, m2=m2@entry=0x7f2c7bf17e88,
+    request=request@entry=0x7f2c7bf17e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=27)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7bf18700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 64 (Thread 0x7f2c7b717700 (LWP 5311)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94888000, min_nr=1, nr=256, events=0x7f2c94907010,
+    timeout=0x7f2c7b716970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7b716de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7b716de0, m1=m1@entry=0x7f2c7b716e80,
+    m2=m2@entry=0x7f2c7b716e88, request=request@entry=0x7f2c7b716e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7b716e90, m2=0x7f2c7b716e88, m1=0x7f2c7b716e80,
+    global_segment=28)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=28, m1=m1@entry=0x7f2c7b716e80, m2=m2@entry=0x7f2c7b716e88,
+    request=request@entry=0x7f2c7b716e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=28)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7b717700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 63 (Thread 0x7f2c7af16700 (LWP 5312)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94885000, min_nr=1, nr=256, events=0x7f2c94909010,
+    timeout=0x7f2c7af15970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7af15de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7af15de0, m1=m1@entry=0x7f2c7af15e80,
+    m2=m2@entry=0x7f2c7af15e88, request=request@entry=0x7f2c7af15e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7af15e90, m2=0x7f2c7af15e88, m1=0x7f2c7af15e80,
+    global_segment=29)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=29, m1=m1@entry=0x7f2c7af15e80, m2=m2@entry=0x7f2c7af15e88,
+    request=request@entry=0x7f2c7af15e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=29)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7af16700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 62 (Thread 0x7f2c7a715700 (LWP 5313)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94882000, min_nr=1, nr=256, events=0x7f2c9490b010,
+    timeout=0x7f2c7a714970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7a714de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7a714de0, m1=m1@entry=0x7f2c7a714e80,
+    m2=m2@entry=0x7f2c7a714e88, request=request@entry=0x7f2c7a714e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7a714e90, m2=0x7f2c7a714e88, m1=0x7f2c7a714e80,
+    global_segment=30)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=30, m1=m1@entry=0x7f2c7a714e80, m2=m2@entry=0x7f2c7a714e88,
+    request=request@entry=0x7f2c7a714e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=30)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7a715700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 61 (Thread 0x7f2c79f14700 (LWP 5314)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9487f000, min_nr=1, nr=256, events=0x7f2c9490d010,
+    timeout=0x7f2c79f13970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c79f13de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c79f13de0, m1=m1@entry=0x7f2c79f13e80,
+    m2=m2@entry=0x7f2c79f13e88, request=request@entry=0x7f2c79f13e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c79f13e90, m2=0x7f2c79f13e88, m1=0x7f2c79f13e80,
+    global_segment=31)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=31, m1=m1@entry=0x7f2c79f13e80, m2=m2@entry=0x7f2c79f13e88,
+    request=request@entry=0x7f2c79f13e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=31)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c79f14700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 60 (Thread 0x7f2c79713700 (LWP 5315)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9487c000, min_nr=1, nr=256, events=0x7f2c9490f010,
+    timeout=0x7f2c79712970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c79712de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c79712de0, m1=m1@entry=0x7f2c79712e80,
+    m2=m2@entry=0x7f2c79712e88, request=request@entry=0x7f2c79712e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c79712e90, m2=0x7f2c79712e88, m1=0x7f2c79712e80,
+    global_segment=32)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=32, m1=m1@entry=0x7f2c79712e80, m2=m2@entry=0x7f2c79712e88,
+    request=request@entry=0x7f2c79712e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=32)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c79713700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 59 (Thread 0x7f2c78f12700 (LWP 5316)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94879000, min_nr=1, nr=256, events=0x7f2c94911010,
+    timeout=0x7f2c78f11970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c78f11de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c78f11de0, m1=m1@entry=0x7f2c78f11e80,
+    m2=m2@entry=0x7f2c78f11e88, request=request@entry=0x7f2c78f11e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c78f11e90, m2=0x7f2c78f11e88, m1=0x7f2c78f11e80,
+    global_segment=33)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=33, m1=m1@entry=0x7f2c78f11e80, m2=m2@entry=0x7f2c78f11e88,
+    request=request@entry=0x7f2c78f11e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase
+/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=33)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c78f12700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 58 (Thread 0x7f2c78711700 (LWP 5317)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94876000, min_nr=1, nr=256, events=0x7f2c94913010,
+    timeout=0x7f2c78710970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c78710de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c78710de0, m1=m1@entry=0x7f2c78710e80,
+    m2=m2@entry=0x7f2c78710e88, request=request@entry=0x7f2c78710e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c78710e90, m2=0x7f2c78710e88, m1=0x7f2c78710e80,
+    global_segment=34)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=34, m1=m1@entry=0x7f2c78710e80, m2=m2@entry=0x7f2c78710e88,
+    request=request@entry=0x7f2c78710e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=34)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c78711700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 57 (Thread 0x7f2c77f10700 (LWP 5318)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94873000, min_nr=1, nr=256, events=0x7f2c94915010,
+    timeout=0x7f2c77f0f970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c77f0fde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c77f0fde0, m1=m1@entry=0x7f2c77f0fe80,
+    m2=m2@entry=0x7f2c77f0fe88, request=request@entry=0x7f2c77f0fe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c77f0fe90, m2=0x7f2c77f0fe88, m1=0x7f2c77f0fe80,
+    global_segment=35)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=35, m1=m1@entry=0x7f2c77f0fe80, m2=m2@entry=0x7f2c77f0fe88,
+    request=request@entry=0x7f2c77f0fe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=35)
+
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c77f10700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 56 (Thread 0x7f2c7770f700 (LWP 5319)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94870000, min_nr=1, nr=256, events=0x7f2c94917010,
+    timeout=0x7f2c7770e970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7770ede0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7770ede0, m1=m1@entry=0x7f2c7770ee80,
+    m2=m2@entry=0x7f2c7770ee88, request=request@entry=0x7f2c7770ee90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7770ee90, m2=0x7f2c7770ee88, m1=0x7f2c7770ee80,
+    global_segment=36)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=36, m1=m1@entry=0x7f2c7770ee80, m2=m2@entry=0x7f2c7770ee88,
+    request=request@entry=0x7f2c7770ee90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=36)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7770f700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 55 (Thread 0x7f2c76f0e700 (LWP 5320)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9486d000, min_nr=1, nr=256, events=0x7f2c94919010,
+    timeout=0x7f2c76f0d970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c76f0dde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c76f0dde0, m1=m1@entry=0x7f2c76f0de80,
+    m2=m2@entry=0x7f2c76f0de88, request=request@entry=0x7f2c76f0de90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c76f0de90, m2=0x7f2c76f0de88, m1=0x7f2c76f0de80,
+    global_segment=37)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=37, m1=m1@entry=0x7f2c76f0de80, m2=m2@entry=0x7f2c76f0de88,
+    request=request@entry=0x7f2c76f0de90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=37)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c76f0e700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 54 (Thread 0x7f2c7670d700 (LWP 5321)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945da000, min_nr=1, nr=256, events=0x7f2c945dd010,
+    timeout=0x7f2c7670c970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7670cde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7670cde0, m1=m1@entry=0x7f2c7670ce80,
+    m2=m2@entry=0x7f2c7670ce88, request=request@entry=0x7f2c7670ce90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7670ce90, m2=0x7f2c7670ce88, m1=0x7f2c7670ce80,
+    global_segment=38)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=38, m1=m1@entry=0x7f2c7670ce80, m2=m2@entry=0x7f2c7670ce88,
+    request=request@entry=0x7f2c7670ce90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=38)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7670d700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 53 (Thread 0x7f2c75f0c700 (LWP 5322)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945d7000, min_nr=1, nr=256, events=0x7f2c945df010,
+    timeout=0x7f2c75f0b970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c75f0bde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c75f0bde0, m1=m1@entry=0x7f2c75f0be80,
+    m2=m2@entry=0x7f2c75f0be88, request=request@entry=0x7f2c75f0be90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c75f0be90, m2=0x7f2c75f0be88, m1=0x7f2c75f0be80,
+    global_segment=39)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=39, m1=m1@entry=0x7f2c75f0be80, m2=m2@entry=0x7f2c75f0be88,
+    request=request@entry=0x7f2c75f0be90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=39)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase
+/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c75f0c700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 52 (Thread 0x7f2c7570b700 (LWP 5323)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945d4000, min_nr=1, nr=256, events=0x7f2c945e1010,
+    timeout=0x7f2c7570a970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c7570ade0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c7570ade0, m1=m1@entry=0x7f2c7570ae80,
+    m2=m2@entry=0x7f2c7570ae88, request=request@entry=0x7f2c7570ae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c7570ae90, m2=0x7f2c7570ae88, m1=0x7f2c7570ae80,
+    global_segment=40)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=40, m1=m1@entry=0x7f2c7570ae80, m2=m2@entry=0x7f2c7570ae88,
+    request=request@entry=0x7f2c7570ae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=40)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c7570b700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 51 (Thread 0x7f2c74f0a700 (LWP 5324)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945d1000, min_nr=1, nr=256, events=0x7f2c945e3010,
+    timeout=0x7f2c74f09970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c74f09de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c74f09de0, m1=m1@entry=0x7f2c74f09e80,
+    m2=m2@entry=0x7f2c74f09e88, request=request@entry=0x7f2c74f09e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c74f09e90, m2=0x7f2c74f09e88, m1=0x7f2c74f09e80,
+    global_segment=41)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=41, m1=m1@entry=0x7f2c74f09e80, m2=m2@entry=0x7f2c74f09e88,
+    request=request@entry=0x7f2c74f09e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=41)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c74f0a700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 50 (Thread 0x7f2c74709700 (LWP 5325)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945ce000, min_nr=1, nr=256, events=0x7f2c945e5010,
+    timeout=0x7f2c74708970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c74708de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c74708de0, m1=m1@entry=0x7f2c74708e80,
+    m2=m2@entry=0x7f2c74708e88, request=request@entry=0x7f2c74708e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c74708e90, m2=0x7f2c74708e88, m1=0x7f2c74708e80,
+    global_segment=42)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=42, m1=m1@entry=0x7f2c74708e80, m2=m2@entry=0x7f2c74708e88,
+    request=request@entry=0x7f2c74708e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=42)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c74709700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 49 (Thread 0x7f2c73f08700 (LWP 5326)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945cb000, min_nr=1, nr=256, events=0x7f2c945e7010,
+    timeout=0x7f2c73f07970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c73f07de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c73f07de0, m1=m1@entry=0x7f2c73f07e80,
+    m2=m2@entry=0x7f2c73f07e88, request=request@entry=0x7f2c73f07e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c73f07e90, m2=0x7f2c73f07e88, m1=0x7f2c73f07e80,
+    global_segment=43)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=43, m1=m1@entry=0x7f2c73f07e80, m2=m2@entry=0x7f2c73f07e88,
+    request=request@entry=0x7f2c73f07e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=43)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c73f08700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+
+Thread 48 (Thread 0x7f2c73707700 (LWP 5327)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945c8000, min_nr=1, nr=256, events=0x7f2c945e9010,
+    timeout=0x7f2c73706970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c73706de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c73706de0, m1=m1@entry=0x7f2c73706e80,
+    m2=m2@entry=0x7f2c73706e88, request=request@entry=0x7f2c73706e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c73706e90, m2=0x7f2c73706e88, m1=0x7f2c73706e80,
+    global_segment=44)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=44, m1=m1@entry=0x7f2c73706e80, m2=m2@entry=0x7f2c73706e88,
+    request=request@entry=0x7f2c73706e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=44)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c73707700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 47 (Thread 0x7f2c72f06700 (LWP 5328)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945c5000, min_nr=1, nr=256, events=0x7f2c945eb010,
+    timeout=0x7f2c72f05970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c72f05de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c72f05de0, m1=m1@entry=0x7f2c72f05e80,
+    m2=m2@entry=0x7f2c72f05e88, request=request@entry=0x7f2c72f05e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c72f05e90, m2=0x7f2c72f05e88, m1=0x7f2c72f05e80,
+    global_segment=45)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=45, m1=m1@entry=0x7f2c72f05e80, m2=m2@entry=0x7f2c72f05e88,
+    request=request@entry=0x7f2c72f05e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=45)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c72f06700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 46 (Thread 0x7f2c72705700 (LWP 5329)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945c2000, min_nr=1, nr=256, events=0x7f2c945ed010,
+    timeout=0x7f2c72704970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c72704de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c72704de0, m1=m1@entry=0x7f2c72704e80,
+    m2=m2@entry=0x7f2c72704e88, request=request@entry=0x7f2c72704e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c72704e90, m2=0x7f2c72704e88, m1=0x7f2c72704e80,
+    global_segment=46)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=46, m1=m1@entry=0x7f2c72704e80, m2=m2@entry=0x7f2c72704e88,
+    request=request@entry=0x7f2c72704e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=46)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c72705700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 45 (Thread 0x7f2c71f04700 (LWP 5330)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945bf000, min_nr=1, nr=256, events=0x7f2c945ef010,
+    timeout=0x7f2c71f03970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c71f03de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c71f03de0, m1=m1@entry=0x7f2c71f03e80,
+    m2=m2@entry=0x7f2c71f03e88, request=request@entry=0x7f2c71f03e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c71f03e90, m2=0x7f2c71f03e88, m1=0x7f2c71f03e80,
+    global_segment=47)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=47, m1=m1@entry=0x7f2c71f03e80, m2=m2@entry=0x7f2c71f03e88,
+    request=request@entry=0x7f2c71f03e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=47)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c71f04700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 44 (Thread 0x7f2c71703700 (LWP 5331)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945bc000, min_nr=1, nr=256, events=0x7f2c945f1010,
+    timeout=0x7f2c71702970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c71702de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c71702de0, m1=m1@entry=0x7f2c71702e80,
+    m2=m2@entry=0x7f2c71702e88, request=request@entry=0x7f2c71702e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c71702e90, m2=0x7f2c71702e88, m1=0x7f2c71702e80,
+    global_segment=48)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=48, m1=m1@entry=0x7f2c71702e80, m2=m2@entry=0x7f2c71702e88,
+    request=request@entry=0x7f2c71702e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=48)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c71703700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 43 (Thread 0x7f2c70f02700 (LWP 5332)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945b9000, min_nr=1, nr=256, events=0x7f2c945f3010,
+    timeout=0x7f2c70f01970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c70f01de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c70f01de0, m1=m1@entry=0x7f2c70f01e80,
+    m2=m2@entry=0x7f2c70f01e88, request=request@entry=0x7f2c70f01e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c70f01e90, m2=0x7f2c70f01e88, m1=0x7f2c70f01e80,
+    global_segment=49)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=49, m1=m1@entry=0x7f2c70f01e80, m2=m2@entry=0x7f2c70f01e88,
+    request=request@entry=0x7f2c70f01e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=49)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c70f02700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 42 (Thread 0x7f2c70701700 (LWP 5333)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945b6000, min_nr=1, nr=256, events=0x7f2c945f5010,
+    timeout=0x7f2c70700970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c70700de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c70700de0, m1=m1@entry=0x7f2c70700e80,
+    m2=m2@entry=0x7f2c70700e88, request=request@entry=0x7f2c70700e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c70700e90, m2=0x7f2c70700e88, m1=0x7f2c70700e80,
+    global_segment=50)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=50, m1=m1@entry=0x7f2c70700e80, m2=m2@entry=0x7f2c70700e88,
+    request=request@entry=0x7f2c70700e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=50)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c70701700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 41 (Thread 0x7f2c6ff00700 (LWP 5334)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945b3000, min_nr=1, nr=256, events=0x7f2c945f7010,
+    timeout=0x7f2c6feff970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6feffde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6feffde0, m1=m1@entry=0x7f2c6feffe80,
+    m2=m2@entry=0x7f2c6feffe88, request=request@entry=0x7f2c6feffe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6feffe90, m2=0x7f2c6feffe88, m1=0x7f2c6feffe80,
+    global_segment=51)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=51, m1=m1@entry=0x7f2c6feffe80, m2=m2@entry=0x7f2c6feffe88,
+    request=request@entry=0x7f2c6feffe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=51)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6ff00700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 40 (Thread 0x7f2c6f6ff700 (LWP 5335)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945b0000, min_nr=1, nr=256, events=0x7f2c945f9010,
+    timeout=0x7f2c6f6fe970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6f6fede0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6f6fede0, m1=m1@entry=0x7f2c6f6fee80,
+    m2=m2@entry=0x7f2c6f6fee88, request=request@entry=0x7f2c6f6fee90)
+
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6f6fee90, m2=0x7f2c6f6fee88, m1=0x7f2c6f6fee80,
+    global_segment=52)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=52, m1=m1@entry=0x7f2c6f6fee80, m2=m2@entry=0x7f2c6f6fee88,
+    request=request@entry=0x7f2c6f6fee90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=52)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6f6ff700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 39 (Thread 0x7f2c6eefe700 (LWP 5336)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945ad000, min_nr=1, nr=256, events=0x7f2c945fb010,
+    timeout=0x7f2c6eefd970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6eefdde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6eefdde0, m1=m1@entry=0x7f2c6eefde80,
+    m2=m2@entry=0x7f2c6eefde88, request=request@entry=0x7f2c6eefde90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6eefde90, m2=0x7f2c6eefde88, m1=0x7f2c6eefde80,
+    global_segment=53)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=53, m1=m1@entry=0x7f2c6eefde80, m2=m2@entry=0x7f2c6eefde88,
+    request=request@entry=0x7f2c6eefde90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=53)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6eefe700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 38 (Thread 0x7f2c6e6fd700 (LWP 5337)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945aa000, min_nr=1, nr=256, events=0x7f2c945fd010,
+    timeout=0x7f2c6e6fc970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6e6fcde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6e6fcde0, m1=m1@entry=0x7f2c6e6fce80,
+    m2=m2@entry=0x7f2c6e6fce88, request=request@entry=0x7f2c6e6fce90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6e6fce90, m2=0x7f2c6e6fce88, m1=0x7f2c6e6fce80,
+    global_segment=54)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=54, m1=m1@entry=0x7f2c6e6fce80, m2=m2@entry=0x7f2c6e6fce88,
+    request=request@entry=0x7f2c6e6fce90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=54)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6e6fd700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 37 (Thread 0x7f2c6defc700 (LWP 5338)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945a7000, min_nr=1, nr=256, events=0x7f2c945ff010,
+    timeout=0x7f2c6defb970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6defbde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6defbde0, m1=m1@entry=0x7f2c6defbe80,
+    m2=m2@entry=0x7f2c6defbe88, request=request@entry=0x7f2c6defbe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6defbe90, m2=0x7f2c6defbe88, m1=0x7f2c6defbe80,
+    global_segment=55)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=55, m1=m1@entry=0x7f2c6defbe80, m2=m2@entry=0x7f2c6defbe88,
+    request=request@entry=0x7f2c6defbe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=55)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6defc700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 36 (Thread 0x7f2c6d6fb700 (LWP 5339)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945a4000, min_nr=1, nr=256, events=0x7f2c94601010,
+    timeout=0x7f2c6d6fa970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6d6fade0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6d6fade0, m1=m1@entry=0x7f2c6d6fae80,
+    m2=m2@entry=0x7f2c6d6fae88, request=request@entry=0x7f2c6d6fae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6d6fae90, m2=0x7f2c6d6fae88, m1=0x7f2c6d6fae80,
+    global_segment=56)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=56, m1=m1@entry=0x7f2c6d6fae80, m2=m2@entry=0x7f2c6d6fae88,
+    request=request@entry=0x7f2c6d6fae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=56)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6d6fb700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 35 (Thread 0x7f2c6cefa700 (LWP 5340)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c945a1000, min_nr=1, nr=256, events=0x7f2c94603010,
+    timeout=0x7f2c6cef9970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6cef9de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6cef9de0, m1=m1@entry=0x7f2c6cef9e80,
+    m2=m2@entry=0x7f2c6cef9e88, request=request@entry=0x7f2c6cef9e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6cef9e90, m2=0x7f2c6cef9e88, m1=0x7f2c6cef9e80,
+    global_segment=57)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=57, m1=m1@entry=0x7f2c6cef9e80, m2=m2@entry=0x7f2c6cef9e88,
+    request=request@entry=0x7f2c6cef9e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=57)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6cefa700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 34 (Thread 0x7f2c6c6f9700 (LWP 5341)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9459e000, min_nr=1, nr=256, events=0x7f2c94605010,
+    timeout=0x7f2c6c6f8970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6c6f8de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6c6f8de0, m1=m1@entry=0x7f2c6c6f8e80,
+    m2=m2@entry=0x7f2c6c6f8e88, request=request@entry=0x7f2c6c6f8e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6c6f8e90, m2=0x7f2c6c6f8e88, m1=0x7f2c6c6f8e80,
+    global_segment=58)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=58, m1=m1@entry=0x7f2c6c6f8e80, m2=m2@entry=0x7f2c6c6f8e88,
+    request=request@entry=0x7f2c6c6f8e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=58)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6c6f9700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 33 (Thread 0x7f2c6bef8700 (LWP 5342)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9459b000, min_nr=1, nr=256, events=0x7f2c94607010,
+    timeout=0x7f2c6bef7970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6bef7de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6bef7de0, m1=m1@entry=0x7f2c6bef7e80,
+    m2=m2@entry=0x7f2c6bef7e88, request=request@entry=0x7f2c6bef7e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6bef7e90, m2=0x7f2c6bef7e88, m1=0x7f2c6bef7e80,
+    global_segment=59)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=59, m1=m1@entry=0x7f2c6bef7e80, m2=m2@entry=0x7f2c6bef7e88,
+    request=request@entry=0x7f2c6bef7e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=59)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6bef8700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 32 (Thread 0x7f2c6b6f7700 (LWP 5343)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94598000, min_nr=1, nr=256, events=0x7f2c94609010,
+    timeout=0x7f2c6b6f6970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6b6f6de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6b6f6de0, m1=m1@entry=0x7f2c6b6f6e80,
+    m2=m2@entry=0x7f2c6b6f6e88, request=request@entry=0x7f2c6b6f6e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6b6f6e90, m2=0x7f2c6b6f6e88, m1=0x7f2c6b6f6e80,
+    global_segment=60)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=60, m1=m1@entry=0x7f2c6b6f6e80, m2=m2@entry=0x7f2c6b6f6e88,
+    request=request@entry=0x7f2c6b6f6e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=60)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6b6f7700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 31 (Thread 0x7f2c6aef6700 (LWP 5344)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94595000, min_nr=1, nr=256, events=0x7f2c9460b010,
+    timeout=0x7f2c6aef5970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6aef5de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6aef5de0, m1=m1@entry=0x7f2c6aef5e80,
+    m2=m2@entry=0x7f2c6aef5e88, request=request@entry=0x7f2c6aef5e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6aef5e90, m2=0x7f2c6aef5e88, m1=0x7f2c6aef5e80,
+    global_segment=61)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=61, m1=m1@entry=0x7f2c6aef5e80, m2=m2@entry=0x7f2c6aef5e88,
+    request=request@entry=0x7f2c6aef5e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=61)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6aef6700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 30 (Thread 0x7f2c6a6f5700 (LWP 5345)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94592000, min_nr=1, nr=256, events=0x7f2c9460d010,
+    timeout=0x7f2c6a6f4970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c6a6f4de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c6a6f4de0, m1=m1@entry=0x7f2c6a6f4e80,
+    m2=m2@entry=0x7f2c6a6f4e88, request=request@entry=0x7f2c6a6f4e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c6a6f4e90, m2=0x7f2c6a6f4e88, m1=0x7f2c6a6f4e80,
+    global_segment=62)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=62, m1=m1@entry=0x7f2c6a6f4e80, m2=m2@entry=0x7f2c6a6f4e88,
+    request=request@entry=0x7f2c6a6f4e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=62)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c6a6f5700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 29 (Thread 0x7f2c69ef4700 (LWP 5346)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9458f000, min_nr=1, nr=256, events=0x7f2c9460f010,
+    timeout=0x7f2c69ef3970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c69ef3de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c69ef3de0, m1=m1@entry=0x7f2c69ef3e80,
+    m2=m2@entry=0x7f2c69ef3e88, request=request@entry=0x7f2c69ef3e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c69ef3e90, m2=0x7f2c69ef3e88, m1=0x7f2c69ef3e80,
+    global_segment=63)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=63, m1=m1@entry=0x7f2c69ef3e80, m2=m2@entry=0x7f2c69ef3e88,
+    request=request@entry=0x7f2c69ef3e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=63)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c69ef4700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 28 (Thread 0x7f2c696f3700 (LWP 5347)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9458c000, min_nr=1, nr=256, events=0x7f2c94611010,
+    timeout=0x7f2c696f2970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c696f2de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c696f2de0, m1=m1@entry=0x7f2c696f2e80,
+    m2=m2@entry=0x7f2c696f2e88, request=request@entry=0x7f2c696f2e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c696f2e90, m2=0x7f2c696f2e88, m1=0x7f2c696f2e80,
+    global_segment=64)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=64, m1=m1@entry=0x7f2c696f2e80, m2=m2@entry=0x7f2c696f2e88,
+    request=request@entry=0x7f2c696f2e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=64)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase
+/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c696f3700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 27 (Thread 0x7f2c68ef2700 (LWP 5348)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94589000, min_nr=1, nr=256, events=0x7f2c94613010,
+    timeout=0x7f2c68ef1970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c68ef1de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c68ef1de0, m1=m1@entry=0x7f2c68ef1e80,
+    m2=m2@entry=0x7f2c68ef1e88, request=request@entry=0x7f2c68ef1e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c68ef1e90, m2=0x7f2c68ef1e88, m1=0x7f2c68ef1e80,
+    global_segment=65)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=65, m1=m1@entry=0x7f2c68ef1e80, m2=m2@entry=0x7f2c68ef1e88,
+    request=request@entry=0x7f2c68ef1e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=65)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c68ef2700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 26 (Thread 0x7f2c686f1700 (LWP 5349)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94586000, min_nr=1, nr=256, events=0x7f2c94615010,
+    timeout=0x7f2c686f0970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c686f0de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c686f0de0, m1=m1@entry=0x7f2c686f0e80,
+    m2=m2@entry=0x7f2c686f0e88, request=request@entry=0x7f2c686f0e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c686f0e90, m2=0x7f2c686f0e88, m1=0x7f2c686f0e80,
+    global_segment=66)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=66, m1=m1@entry=0x7f2c686f0e80, m2=m2@entry=0x7f2c686f0e88,
+    request=request@entry=0x7f2c686f0e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=66)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c686f1700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 25 (Thread 0x7f2c67ef0700 (LWP 5350)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94583000, min_nr=1, nr=256, events=0x7f2c94617010,
+    timeout=0x7f2c67eef970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c67eefde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c67eefde0, m1=m1@entry=0x7f2c67eefe80,
+    m2=m2@entry=0x7f2c67eefe88, request=request@entry=0x7f2c67eefe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c67eefe90, m2=0x7f2c67eefe88, m1=0x7f2c67eefe80,
+    global_segment=67)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=67, m1=m1@entry=0x7f2c67eefe80, m2=m2@entry=0x7f2c67eefe88,
+    request=request@entry=0x7f2c67eefe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=67)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c67ef0700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 24 (Thread 0x7f2c676ef700 (LWP 5351)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94580000, min_nr=1, nr=256, events=0x7f2c94619010,
+    timeout=0x7f2c676ee970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c676eede0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c676eede0, m1=m1@entry=0x7f2c676eee80,
+    m2=m2@entry=0x7f2c676eee88, request=request@entry=0x7f2c676eee90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c676eee90, m2=0x7f2c676eee88, m1=0x7f2c676eee80,
+    global_segment=68)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=68, m1=m1@entry=0x7f2c676eee80, m2=m2@entry=0x7f2c676eee88,
+    request=request@entry=0x7f2c676eee90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=68)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c676ef700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 23 (Thread 0x7f2c66eee700 (LWP 5352)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9457d000, min_nr=1, nr=256, events=0x7f2c9461b010,
+    timeout=0x7f2c66eed970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c66eedde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c66eedde0, m1=m1@entry=0x7f2c66eede80,
+    m2=m2@entry=0x7f2c66eede88, request=request@entry=0x7f2c66eede90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c66eede90, m2=0x7f2c66eede88, m1=0x7f2c66eede80,
+    global_segment=69)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=69, m1=m1@entry=0x7f2c66eede80, m2=m2@entry=0x7f2c66eede88,
+    request=request@entry=0x7f2c66eede90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=69)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c66eee700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 22 (Thread 0x7f2c666ed700 (LWP 5353)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c9457a000, min_nr=1, nr=256, events=0x7f2c9461d010,
+    timeout=0x7f2c666ec970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c666ecde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c666ecde0, m1=m1@entry=0x7f2c666ece80,
+    m2=m2@entry=0x7f2c666ece88, request=request@entry=0x7f2c666ece90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c666ece90, m2=0x7f2c666ece88, m1=0x7f2c666ece80,
+    global_segment=70)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=70, m1=m1@entry=0x7f2c666ece80, m2=m2@entry=0x7f2c666ece88,
+    request=request@entry=0x7f2c666ece90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=70)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c666ed700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 21 (Thread 0x7f2c65eec700 (LWP 5354)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94577000, min_nr=1, nr=256, events=0x7f2c9461f010,
+    timeout=0x7f2c65eeb970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c65eebde0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c65eebde0, m1=m1@entry=0x7f2c65eebe80,
+    m2=m2@entry=0x7f2c65eebe88, request=request@entry=0x7f2c65eebe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c65eebe90, m2=0x7f2c65eebe88, m1=0x7f2c65eebe80,
+    global_segment=71)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=71, m1=m1@entry=0x7f2c65eebe80, m2=m2@entry=0x7f2c65eebe88,
+    request=request@entry=0x7f2c65eebe90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=71)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c65eec700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 20 (Thread 0x7f2c656eb700 (LWP 5355)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94574000, min_nr=1, nr=256, events=0x7f2c94621010,
+    timeout=0x7f2c656ea970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c656eade0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c656eade0, m1=m1@entry=0x7f2c656eae80,
+    m2=m2@entry=0x7f2c656eae88, request=request@entry=0x7f2c656eae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c656eae90, m2=0x7f2c656eae88, m1=0x7f2c656eae80,
+    global_segment=72)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=72, m1=m1@entry=0x7f2c656eae80, m2=m2@entry=0x7f2c656eae88,
+    request=request@entry=0x7f2c656eae90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=72)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c656eb700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 19 (Thread 0x7f2c64eea700 (LWP 5356)):
+#0  0x00007f2c9f3a4644 in __io_getevents_0_4 (ctx=0x7f2c94571000, min_nr=1, nr=256, events=0x7f2c94623010,
+    timeout=0x7f2c64ee9970) at io_getevents.c:25
+#1  0x0000000000fba2f1 in LinuxAIOHandler::collect (this=this@entry=0x7f2c64ee9de0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2500
+#2  0x0000000000fbad1d in LinuxAIOHandler::poll (this=this@entry=0x7f2c64ee9de0, m1=m1@entry=0x7f2c64ee9e80,
+    m2=m2@entry=0x7f2c64ee9e88, request=request@entry=0x7f2c64ee9e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2646
+#3  0x0000000000fbd1d6 in os_aio_linux_handler (request=0x7f2c64ee9e90, m2=0x7f2c64ee9e88, m1=0x7f2c64ee9e80,
+    global_segment=73)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:2702
+#4  os_aio_handler (segment=segment@entry=73, m1=m1@entry=0x7f2c64ee9e80, m2=m2@entry=0x7f2c64ee9e88,
+    request=request@entry=0x7f2c64ee9e90)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0file.cc:6259
+#5  0x000000000118713f in fil_aio_wait (segment=segment@entry=73)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fil/fil0fil.cc:5835
+#6  0x000000000106f9d8 in io_handler_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0start.cc:311
+#7  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c64eea700) at pthread_create.c:308
+#8  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 18 (Thread 0x7f2c646e9700 (LWP 5357)):
+#0  pthread_cond_timedwait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:238
+#1  0x0000000000fbe822 in os_event::timed_wait (this=this@entry=0x24e7a68,
+    abstime=abstime@entry=0x7f2c646e8bb0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:285
+#2  0x0000000000fbea51 in os_event::wait_time_low (this=0x24e7a68, time_in_usec=<optimized out>,
+    reset_sig_count=<optimized out>, reset_sig_count@entry=2)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:412
+#3  0x0000000000fbecba in os_event_wait_time_low (event=<optimized out>, time_in_usec=<optimized out>,
+    reset_sig_count=reset_sig_count@entry=2)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:517
+#4  0x000000000112b07f in pc_sleep_if_needed (sig_count=2, next_loop_time=1573533065617)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/buf/buf0flu.cc:2690
+#5  buf_flush_page_cleaner_coordinator (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/buf/buf0flu.cc:3191
+#6  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c646e9700) at pthread_create.c:308
+#7  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 17 (Thread 0x7f2c63cc2700 (LWP 5368)):
+#0  pthread_cond_timedwait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:238
+#1  0x0000000000fbe822 in os_event::timed_wait (this=this@entry=0x2b4cee8,
+    abstime=abstime@entry=0x7f2c63cc1d40)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:285
+#2  0x0000000000fbea51 in os_event::wait_time_low (this=this@entry=0x2b4cee8,
+    time_in_usec=time_in_usec@entry=1000000, reset_sig_count=<optimized out>, reset_sig_count@entry=1)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:412
+#3  0x0000000000fbecba in os_event_wait_time_low (event=event@entry=0x2b4cee8,
+    time_in_usec=time_in_usec@entry=1000000, reset_sig_count=reset_sig_count@entry=1)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:517
+#4  0x0000000000f89d77 in lock_wait_timeout_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/lock/lock0wait.cc:501
+#5  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c63cc2700) at pthread_create.c:308
+#6  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 16 (Thread 0x7f2c634c1700 (LWP 5369)):
+#0  pthread_cond_timedwait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:238
+#1  0x0000000000fbe822 in os_event::timed_wait (this=this@entry=0x24e78b8,
+    abstime=abstime@entry=0x7f2c634c0c80)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:285
+#2  0x0000000000fbea51 in os_event::wait_time_low (this=0x24e78b8, time_in_usec=time_in_usec@entry=1000000,
+    reset_sig_count=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:412
+#3  0x0000000000fbecba in os_event_wait_time_low (event=<optimized out>,
+    time_in_usec=time_in_usec@entry=1000000, reset_sig_count=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:517
+#4  0x0000000001069bba in srv_error_monitor_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0srv.cc:1751
+#5  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c634c1700) at pthread_create.c:308
+#6  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 15 (Thread 0x7f2c62cc0700 (LWP 5370)):
+#0  pthread_cond_timedwait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:238
+#1  0x0000000000fbe822 in os_event::timed_wait (this=this@entry=0x24e7948,
+    abstime=abstime@entry=0x7f2c62cbfe10)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:285
+#2  0x0000000000fbea51 in os_event::wait_time_low (this=0x24e7948, time_in_usec=time_in_usec@entry=5000000,
+    reset_sig_count=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:412
+#3  0x0000000000fbecba in os_event_wait_time_low (event=<optimized out>,
+    time_in_usec=time_in_usec@entry=5000000, reset_sig_count=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:517
+#4  0x00000000010696f9 in srv_monitor_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0srv.cc:1585
+#5  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c62cc0700) at pthread_create.c:308
+#6  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 14 (Thread 0x7f2c624bf700 (LWP 5371)):
+#0  0x00007f2c9f5b4e4d in nanosleep () at ../sysdeps/unix/syscall-template.S:81
+#1  0x0000000000fbf1af in os_thread_sleep (tm=tm@entry=1000000)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0thread.cc:279
+#2  0x000000000106b073 in srv_master_sleep ()
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0srv.cc:2330
+#3  srv_master_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0srv.cc:2377
+#4  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c624bf700) at pthread_create.c:308
+#5  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 13 (Thread 0x7f2c61cbe700 (LWP 5372)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x0000000000fbe961 in wait (this=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:165
+#2  os_event::wait_low (this=0x24e7678, reset_sig_count=<optimized out>, reset_sig_count@entry=1)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:335
+#3  0x0000000000fbecca in os_event_wait_low (event=<optimized out>, reset_sig_count=reset_sig_count@entry=1)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:534
+#4  0x000000000106d437 in srv_purge_coordinator_suspend (rseg_history_len=<optimized out>,
+    slot=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0srv.cc:2676
+#5  srv_purge_coordinator_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0srv.cc:2792
+#6  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c61cbe700) at pthread_create.c:308
+#7  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 12 (Thread 0x7f2c614bd700 (LWP 5373)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x0000000000fbe961 in wait (this=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:165
+#2  os_event::wait_low (this=0x24e7708, reset_sig_count=<optimized out>, reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:335
+#3  0x0000000000fbecca in os_event_wait_low (event=<optimized out>, reset_sig_count=reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:534
+#4  0x000000000106bc6a in srv_worker_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0srv.cc:2520
+#5  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c614bd700) at pthread_create.c:308
+#6  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 11 (Thread 0x7f2c60cbc700 (LWP 5374)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x0000000000fbe961 in wait (this=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:165
+#2  os_event::wait_low (this=0x24e7798, reset_sig_count=<optimized out>, reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:335
+#3  0x0000000000fbecca in os_event_wait_low (event=<optimized out>, reset_sig_count=reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:534
+#4  0x000000000106bc6a in srv_worker_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0srv.cc:2520
+#5  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c60cbc700) at pthread_create.c:308
+#6  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 10 (Thread 0x7f2c5bfff700 (LWP 5375)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x0000000000fbe961 in wait (this=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:165
+#2  os_event::wait_low (this=0x24e7828, reset_sig_count=<optimized out>, reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:335
+#3  0x0000000000fbecca in os_event_wait_low (event=<optimized out>, reset_sig_count=reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:534
+#4  0x000000000106bc6a in srv_worker_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/srv/srv0srv.cc:2520
+#5  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c5bfff700) at pthread_create.c:308
+#6  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 9 (Thread 0x7f2c5b7fe700 (LWP 5380)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x0000000000fbe961 in wait (this=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:165
+#2  os_event::wait_low (this=0x24e79d8, reset_sig_count=<optimized out>, reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:335
+#3  0x0000000000fbecca in os_event_wait_low (event=<optimized out>, reset_sig_count=reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:534
+#4  0x000000000112204c in buf_dump_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/buf/buf0dump.cc:782
+#5  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c5b7fe700) at pthread_create.c:308
+#6  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 8 (Thread 0x7f2c5affd700 (LWP 5381)):
+#0  pthread_cond_timedwait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:238
+#1  0x0000000000fbe822 in os_event::timed_wait (this=this@entry=0x2b5af08,
+    abstime=abstime@entry=0x7f2c5affcd60)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:285
+#2  0x0000000000fbea51 in os_event::wait_time_low (this=0x2b5af08, time_in_usec=time_in_usec@entry=10000000,
+    reset_sig_count=<optimized out>, reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:412
+#3  0x0000000000fbecba in os_event_wait_time_low (event=<optimized out>,
+    time_in_usec=time_in_usec@entry=10000000, reset_sig_count=reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:517
+#4  0x000000000117fb9d in dict_stats_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/dict/dict0stats_bg.cc:428
+#5  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c5affd700) at pthread_create.c:308
+#6  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 7 (Thread 0x7f2c5a7fc700 (LWP 5382)):
+#0  pthread_cond_timedwait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:238
+#1  0x0000000000fbe822 in os_event::timed_wait (this=this@entry=0x2ba8028,
+    abstime=abstime@entry=0x7f2c5a7fbc10)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:285
+#2  0x0000000000fbea51 in os_event::wait_time_low (this=0x2ba8028, time_in_usec=time_in_usec@entry=5000000,
+    reset_sig_count=<optimized out>, reset_sig_count@entry=1)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:412
+#3  0x0000000000fbecba in os_event_wait_time_low (event=<optimized out>,
+    time_in_usec=time_in_usec@entry=5000000, reset_sig_count=reset_sig_count@entry=1)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:517
+#4  0x00000000010ceea8 in ib_wqueue_timedwait (wq=wq@entry=0x2ba7ef8,
+    wait_in_usecs=wait_in_usecs@entry=5000000)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/ut/ut0wqueue.cc:160
+#5  0x00000000011d6df3 in fts_optimize_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/fts/fts0opt.cc:3040
+#6  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c5a7fc700) at pthread_create.c:308
+#7  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 6 (Thread 0x7f2c59ffb700 (LWP 5383)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x0000000000fbe961 in wait (this=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:165
+#2  os_event::wait_low (this=0x24e7af8, reset_sig_count=<optimized out>, reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:335
+#3  0x0000000000fbecca in os_event_wait_low (event=<optimized out>, reset_sig_count=reset_sig_count@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/os/os0event.cc:534
+#4  0x0000000001115e92 in buf_resize_thread (arg=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/innobase/buf/buf0buf.cc:3016
+#5  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c59ffb700) at pthread_create.c:308
+#6  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 5 (Thread 0x7f2c600a8700 (LWP 5384)):
+#0  0x00007f2c9f5b5371 in do_sigwait (sig=0x7f2c600a7dc0, set=<optimized out>)
+    at ../sysdeps/unix/sysv/linux/sigwait.c:61
+#1  __sigwait (set=0x7f2c600a7e20, sig=0x7f2c600a7dc0) at ../sysdeps/unix/sysv/linux/sigwait.c:99
+#2  0x00000000007a254b in signal_hand (arg=arg@entry=0x0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/mysqld.cc:2101
+#3  0x000000000126de04 in pfs_spawn_thread (arg=0x3522ef0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/perfschema/pfs.cc:2188
+#4  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c600a8700) at pthread_create.c:308
+#5  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 4 (Thread 0x7f2c34ff1700 (LWP 5385)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x0000000000e5f4b3 in native_cond_wait (mutex=<optimized out>, cond=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/include/thr_cond.h:140
+#2  my_cond_wait (mp=<optimized out>, cond=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/include/thr_cond.h:195
+#3  inline_mysql_cond_wait (that=<optimized out>, mutex=<optimized out>,
+    src_file=0x15fd460 "/export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/rpl_gtid_persist.cc", src_line=852)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/include/mysql/psi/mysql_thread.h:1184
+#4  compress_gtid_table (p_thd=p_thd@entry=0x347bc70)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/rpl_gtid_persist.cc:852
+#5  0x000000000126de04 in pfs_spawn_thread (arg=0x3522ef0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/perfschema/pfs.cc:2188
+#6  0x00007f2c9f5ade25 in start_thread (arg=0x7f2c34ff1700) at pthread_create.c:308
+#7  0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 3 (Thread 0x7f2c60067700 (LWP 5389)):
+#0  0x00007f2c9dfa71f7 in __GI_raise (sig=sig@entry=6) at ../nptl/sysdeps/unix/sysv/linux/raise.c:56
+#1  0x00007f2c9dfa88e8 in __GI_abort () at abort.c:90
+#2  0x00007f2c9dfe6f47 in __libc_message (do_abort=do_abort@entry=2,
+    fmt=fmt@entry=0x7f2c9e0f3608 "*** Error in `%s': %s: 0x%s ***\n")
+    at ../sysdeps/unix/sysv/linux/libc_fatal.c:196
+#3  0x00007f2c9dfecb54 in malloc_printerr (action=<optimized out>,
+    str=0x7f2c9e0f0cb7 "corrupted double-linked list", ptr=<optimized out>, ar_ptr=<optimized out>)
+    at malloc.c:5023
+#4  0x00007f2c9dfee8c2 in _int_free (av=0x7f2c44000020, p=0x7f2c2277dec0, have_lock=0) at malloc.c:3994
+#5  0x00007f2c58d7ab83 in grn_free_default (ctx=ctx@entry=0x7f2c22700d30, ptr=ptr@entry=0x7f2c22878fc0,
+    file=file@entry=0x7f2c590f93c0 "hash.c", line=line@entry=2905,
+    func=func@entry=0x7f2c590f97a0 <__FUNCTION__.14790> "grn_hash_cursor_close") at alloc.c:827
+#6  0x00007f2c58e89ad8 in grn_hash_cursor_close (ctx=ctx@entry=0x7f2c22700d30, c=c@entry=0x7f2c22878fc0)
+    at hash.c:2905
+#7  0x00007f2c58da033b in grn_obj_close (ctx=0x7f2c22700d30, obj=0x7f2c22878fc0) at db.c:10819
+#8  0x00007f2c595b928e in mrn_generic_ft_clear (handler=handler@entry=0x7f2c225701e0) at ha_mroonga.cpp:2081
+#9  0x00007f2c595b9309 in mrn_generic_ft_close_search (handler=0x7f2c225701e0) at ha_mroonga.cpp:2103
+#10 mrn_wrapper_ft_close_search (handler=0x7f2c225701e0) at ha_mroonga.cpp:2151
+#11 0x0000000000877d92 in Item_func_match::cleanup (this=0x7f2c47c65e70)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/item_func.h:2378
+#12 0x0000000000c82a10 in delete_self (this=0x7f2c47c65e70)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/item.h:2131
+#13 Query_arena::free_items (this=this@entry=0x7f2c47bb0ce8)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_class.cc:3391
+#14 0x0000000000c82a95 in THD::cleanup_after_query (this=this@entry=0x7f2c47bb0ce0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_class.cc:2303
+#15 0x0000000000cc9032 in mysql_parse (thd=thd@entry=0x7f2c47bb0ce0,
+    parser_state=parser_state@entry=0x7f2c60066540)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:5597
+#16 0x0000000000cc9d5a in dispatch_command (thd=thd@entry=0x7f2c47bb0ce0,
+    com_data=com_data@entry=0x7f2c60066de0, command=COM_QUERY)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:1461
+#17 0x0000000000ccb79f in do_command (thd=thd@entry=0x7f2c47bb0ce0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:999
+#18 0x0000000000d8ad38 in handle_connection (arg=arg@entry=0x302b220)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/conn_handler/connection_handler_per_thread.cc:300
+#19 0x000000000126de04 in pfs_spawn_thread (arg=0x352eae0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/perfschema/pfs.cc:2188
+#20 0x00007f2c9f5ade25 in start_thread (arg=0x7f2c60067700) at pthread_create.c:308
+#21 0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 2 (Thread 0x7f2c5813f700 (LWP 5390)):
+#0  0x00007f2c9f5b470d in read () at ../sysdeps/unix/syscall-template.S:81
+#1  0x0000000000ef518a in read (__nbytes=131072, __buf=0x7f2c42e0c990, __fd=74)
+    at /usr/include/bits/unistd.h:44
+#2  my_read (Filedes=Filedes@entry=74, Buffer=Buffer@entry=0x7f2c42e0c990 "\003\035\n\002",
+    Count=Count@entry=131072, MyFlags=MyFlags@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/mysys/my_read.c:52
+#3  0x0000000000edbad7 in inline_mysql_file_read (
+    src_file=0x1609ff8 "/export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/mysys/mf_iocache.c", flags=0, count=131072, buffer=0x7f2c42e0c990 "\003\035\n\002", file=74, src_line=536)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/include/mysql/psi/mysql_file.h:1112
+#4  _my_b_read (info=0x7f2c42d56dc0, Buffer=0x7f2c5813cc00 "\220\321\023X,\177", Count=20)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/mysys/mf_iocache.c:535
+#5  0x000000000125f750 in _mi_read_cache (info=info@entry=0x7f2c42d56dc0,
+    buff=buff@entry=0x7f2c5813cc00 "\220\321\023X,\177", pos=pos@entry=0, length=length@entry=20, flag=3)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/myisam/mi_cache.c:84
+#6  0x0000000001234abe in _mi_read_rnd_dynamic_record (info=0x7f2c42d56b90, buf=0x7f2c424492c0 "", filepos=0,
+    skip_deleted_blocks=1 '\001')
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/myisam/mi_dynrec.c:1756
+#7  0x000000000121a6b6 in ha_myisam::rnd_next (this=0x7f2c42448f50, buf=0x7f2c424492c0 "")
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/myisam/ha_myisam.cc:1822
+#8  0x00000000007fdefc in handler::ha_rnd_next (this=this@entry=0x7f2c42448f50, buf=0x7f2c424492c0 "")
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/handler.cc:2946
+#9  0x00000000007f0b0f in find_all_keys (found_rows=0x7f2c5813d308, pq=0x0, tempfile=0x7f2c5813d070,
+    chunk_file=0x7f2c5813d190, fs_info=0x7f2c5813cf60, qep_tab=0x7f2c42696270, param=0x7f2c5813cfe0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/filesort.cc:979
+#10 filesort (thd=thd@entry=0x7f2c40000a50, filesort=filesort@entry=0x7f2c42696cb8,
+    sort_positions=<optimized out>, examined_rows=examined_rows@entry=0x7f2c5813d300,
+    found_rows=found_rows@entry=0x7f2c5813d308, returned_rows=returned_rows@entry=0x7f2c5813d310)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/filesort.cc:423
+#11 0x0000000000c9744d in create_sort_index (tab=0x7f2c42696270, join=0x7f2c42688268, thd=0x7f2c40000a50)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_executor.cc:3665
+#12 QEP_TAB::sort_table (this=this@entry=0x7f2c42696270)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_executor.cc:2599
+#13 0x0000000000c975f9 in join_init_read_record (tab=0x7f2c42696270)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_executor.cc:2465
+#14 0x0000000000c9b11b in sub_select (join=0x7f2c42688268, qep_tab=0x7f2c42696270,
+    end_of_records=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_executor.cc:1271
+#15 0x0000000000c93d67 in do_select (join=0x7f2c42688268)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_executor.cc:944
+#16 JOIN::exec (this=0x7f2c42688268)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_executor.cc:199
+#17 0x0000000000d0223d in handle_query (thd=thd@entry=0x7f2c40000a50, lex=lex@entry=0x7f2c40002b98,
+    result=result@entry=0x7f2c40d73d28, added_options=added_options@entry=0,
+    removed_options=removed_options@entry=0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_select.cc:184
+#18 0x0000000000772691 in execute_sqlcom_select (thd=thd@entry=0x7f2c40000a50, all_tables=<optimized out>)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:5158
+#19 0x0000000000cc6d2c in mysql_execute_command (thd=thd@entry=0x7f2c40000a50,
+    first_level=first_level@entry=true)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:2795
+#20 0x0000000000cc9265 in mysql_parse (thd=thd@entry=0x7f2c40000a50,
+    parser_state=parser_state@entry=0x7f2c5813e540)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:5574
+#21 0x0000000000cc9d5a in dispatch_command (thd=thd@entry=0x7f2c40000a50,
+    com_data=com_data@entry=0x7f2c5813ede0, command=COM_QUERY)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:1461
+#22 0x0000000000ccb79f in do_command (thd=thd@entry=0x7f2c40000a50)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:999
+#23 0x0000000000d8ad38 in handle_connection (arg=arg@entry=0x2b95f70)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/conn_handler/connection_handler_per_thread.cc:300
+#24 0x000000000126de04 in pfs_spawn_thread (arg=0x3096830)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/perfschema/pfs.cc:2188
+#25 0x00007f2c9f5ade25 in start_thread (arg=0x7f2c5813f700) at pthread_create.c:308
+#26 0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+
+Thread 1 (Thread 0x7f2c9f9d6740 (LWP 5281)):
+#0  0x00007f2c9e05fa3d in poll () at ../sysdeps/unix/syscall-template.S:81
+#1  0x0000000000d8c9ee in poll (__timeout=-1, __nfds=<optimized out>, __fds=0x30b5b40)
+    at /usr/include/bits/poll2.h:41
+#2  Mysqld_socket_listener::listen_for_connection_event (this=0x30b5ae0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/conn_handler/socket_connection.cc:852
+#3  0x00000000007ab2f9 in connection_event_loop (this=0x2f457e0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/conn_handler/connection_acceptor.h:66
+#4  mysqld_main (argc=71, argv=0x23807a8)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/mysqld.cc:5045
+#5  0x00007f2c9df93c05 in __libc_start_main (main=0x782df0 <main(int, char**)>, argc=3,
+    ubp_av=0x7ffed556a0a8, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>,
+    stack_end=0x7ffed556a098) at ../csu/libc-start.c:274
+#6  0x000000000079ff54 in _start ()

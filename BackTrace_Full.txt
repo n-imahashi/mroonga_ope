@@ -1,0 +1,147 @@
+(gdb) bt full
+#0  0x00007f2c9dfa71f7 in __GI_raise (sig=sig@entry=6) at ../nptl/sysdeps/unix/sysv/linux/raise.c:56
+        resultvar = 0
+        pid = 5281
+        selftid = 5389
+#1  0x00007f2c9dfa88e8 in __GI_abort () at abort.c:90
+        save_stage = 2
+        act = {__sigaction_handler = {sa_handler = 0x7f2c9df84479, sa_sigaction = 0x7f2c9df84479}, sa_mask = {
+            __val = {5, 139829607075476, 3, 139828566317038, 2, 139829607071847, 1, 139829607080585, 3,
+              139828566317012, 12, 139829607080589, 2, 139828566317824, 139828566317824, 139828566319584}},
+          sa_flags = 17, sa_restorer = 0x7f2c60065d00}
+        sigs = {__val = {32, 0 <repeats 15 times>}}
+#2  0x00007f2c9dfe6f47 in __libc_message (do_abort=do_abort@entry=2,
+    fmt=fmt@entry=0x7f2c9e0f3608 "*** Error in `%s': %s: 0x%s ***\n")
+    at ../sysdeps/unix/sysv/linux/libc_fatal.c:196
+        ap = {{gp_offset = 40, fp_offset = 48, overflow_arg_area = 0x7f2c600661f0,
+            reg_save_area = 0x7f2c60066100}}
+        ap_copy = {{gp_offset = 16, fp_offset = 48, overflow_arg_area = 0x7f2c600661f0,
+            reg_save_area = 0x7f2c60066100}}
+        fd = 2
+        on_2 = <optimized out>
+        list = <optimized out>
+        nlist = <optimized out>
+        cp = <optimized out>
+        written = <optimized out>
+#3  0x00007f2c9dfecb54 in malloc_printerr (action=<optimized out>,
+    str=0x7f2c9e0f0cb7 "corrupted double-linked list", ptr=<optimized out>, ar_ptr=<optimized out>)
+    at malloc.c:5023
+        buf = "00007f2c2277dec0"
+        cp = <optimized out>
+        ar_ptr = <optimized out>
+        ptr = <optimized out>
+        str = 0x7f2c9e0f0cb7 "corrupted double-linked list"
+        action = <optimized out>
+#4  0x00007f2c9dfee8c2 in _int_free (av=0x7f2c44000020, p=0x7f2c2277dec0, have_lock=0) at malloc.c:3994
+        size = 1028480
+        fb = <optimized out>
+        nextchunk = 0x7f2c22879040
+        nextsize = 159200
+        nextinuse = <optimized out>
+        prevsize = <optimized out>
+        bck = <optimized out>
+        fwd = <optimized out>
+        errstr = 0x0
+        locked = <optimized out>
+#5  0x00007f2c58d7ab83 in grn_free_default (ctx=ctx@entry=0x7f2c22700d30, ptr=ptr@entry=0x7f2c22878fc0,
+    file=file@entry=0x7f2c590f93c0 "hash.c", line=line@entry=2905,
+    func=func@entry=0x7f2c590f97a0 <__FUNCTION__.14790> "grn_hash_cursor_close") at alloc.c:827
+        __FUNCTION__ = "grn_free_default"
+#6  0x00007f2c58e89ad8 in grn_hash_cursor_close (ctx=ctx@entry=0x7f2c22700d30, c=c@entry=0x7f2c22878fc0)
+    at hash.c:2905
+        __FUNCTION__ = "grn_hash_cursor_close"
+#7  0x00007f2c58da033b in grn_obj_close (ctx=0x7f2c22700d30, obj=0x7f2c22878fc0) at db.c:10819
+        rc = GRN_INVALID_ARGUMENT
+        __FUNCTION__ = "grn_obj_close"
+#8  0x00007f2c595b928e in mrn_generic_ft_clear (handler=handler@entry=0x7f2c225701e0) at ha_mroonga.cpp:2081
+        info = 0x7f2c225701e0
+#9  0x00007f2c595b9309 in mrn_generic_ft_close_search (handler=0x7f2c225701e0) at ha_mroonga.cpp:2103
+        info = 0x7f2c225701e0
+#10 mrn_wrapper_ft_close_search (handler=0x7f2c225701e0) at ha_mroonga.cpp:2151
+No locals.
+#11 0x0000000000877d92 in Item_func_match::cleanup (this=0x7f2c47c65e70)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/item_func.h:2378
+No locals.
+#12 0x0000000000c82a10 in delete_self (this=0x7f2c47c65e70)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/item.h:2131
+No locals.
+#13 Query_arena::free_items (this=this@entry=0x7f2c47bb0ce8)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_class.cc:3391
+        next = 0x7f2c47ca6cf0
+#14 0x0000000000c82a95 in THD::cleanup_after_query (this=this@entry=0x7f2c47bb0ce0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_class.cc:2303
+No locals.
+#15 0x0000000000cc9032 in mysql_parse (thd=thd@entry=0x7f2c47bb0ce0,
+    parser_state=parser_state@entry=0x7f2c60066540)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:5597
+        lex = 0x7f2c47bb2e28
+        found_semicolon = <optimized out>
+        err = <optimized out>
+        error = <optimized out>
+        __func__ = "mysql_parse"
+#16 0x0000000000cc9d5a in dispatch_command (thd=thd@entry=0x7f2c47bb0ce0,
+    com_data=com_data@entry=0x7f2c60066de0, command=COM_QUERY)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:1461
+        packet_end = 0x7f2c20413df9 ""
+        parser_state = {m_input = {m_compute_digest = false}, m_lip = {m_thd = 0x7f2c47bb0ce0, yylineno = 1,
+            yytoklen = 6, yylval = 0x7f2c600643c0, lookahead_token = -1, lookahead_yylval = 0x0,
+            skip_digest = false, query_charset = 0x1e4f420 <my_charset_utf8_general_ci>,
+            m_ptr = 0x7f2c20413dfa "", m_tok_start = 0x7f2c20413dfa "", m_tok_end = 0x7f2c20413dfa "",
+            m_end_of_query = 0x7f2c20413df9 "",
+            m_buf = 0x7f2c20413b20 "select sub.SEARCH_FLG, sub.ITEM_ID, sub.UNLIMITED_FLG, sub.RENTAL_FLG, sub.FREE_FLG, sub.START_DATE, sub.END_DATE from ( select 2 as SEARCH_FLG, ITEM_ID, UNLIMITED_FLG, RENTAL_FLG, FREE_FLG, AGE_RESTR"..., m_buf_length = 729, m_echo = true, m_echo_saved = false,
+            m_cpp_buf = 0x7f2c20413e00 "select sub.SEARCH_FLG, sub.ITEM_ID, sub.UNLIMITED_FLG, sub.RENTAL_FLG, sub.FREE_FLG, sub.START_DATE, sub.END_DATE from ( select 2 as SEARCH_FLG, ITEM_ID, UNLIMITED_FLG, RENTAL_FLG, FREE_FLG, AGE_RESTR"..., m_cpp_ptr = 0x7f2c204140d9 "", m_cpp_tok_start = 0x7f2c204140d9 "",
+            m_cpp_tok_end = 0x7f2c204140d9 "", m_body_utf8 = 0x0, m_body_utf8_ptr = 0x0,
+            m_cpp_utf8_processed_ptr = 0x0, next_state = MY_LEX_END, found_semicolon = 0x0,
+            tok_bitmap = 255 '\377', ignore_space = false, stmt_prepare_mode = false,
+            multi_statements = true, in_comment = NO_COMMENT, in_comment_saved = NO_COMMENT,
+            m_cpp_text_start = 0x7f2c204140d3 "120000", m_cpp_text_end = 0x7f2c204140d9 "",
+            m_underscore_cs = 0x0, m_digest = 0x0}, m_yacc = {yacc_yyss = 0x0, yacc_yyvs = 0x0,
+            yacc_yyls = 0x0, m_lock_type = TL_READ_DEFAULT, m_mdl_type = MDL_SHARED_READ,
+            m_ha_rkey_mode = HA_READ_KEY_EXACT}, m_digest_psi = 0x7f2c47bb2940, m_comment = false}
+        error = false
+        thd_manager = 0x246ba70
+        __func__ = "dispatch_command"
+#17 0x0000000000ccb79f in do_command (thd=thd@entry=0x7f2c47bb0ce0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/sql_parse.cc:999
+        return_value = <optimized out>
+        net = 0x7f2c47bb2480
+        command = COM_QUERY
+        com_data = {com_init_db = {db_name = 0x7f2c223e0831 "", length = 729}, com_refresh = {
+            options = 49 '1'}, com_shutdown = {level = 574490673}, com_kill = {id = 139827529779249},
+          com_set_option = {opt_command = 574490673}, com_stmt_execute = {stmt_id = 139827529779249,
+            flags = 729, params = 0x7f2c47bb0ce0 "\320\034\330\001", params_length = 79}, com_stmt_fetch = {
+            stmt_id = 139827529779249, num_rows = 729}, com_stmt_send_long_data = {stmt_id = 139827529779249,
+            param_number = 729, longdata = 0x7f2c47bb0ce0 "\320\034\330\001", length = 79},
+          com_stmt_prepare = {query = 0x7f2c223e0831 "", length = 729}, com_stmt_close = {
+            stmt_id = 574490673}, com_stmt_reset = {stmt_id = 574490673}, com_query = {
+            query = 0x7f2c223e0831 "", length = 729}, com_field_list = {table_name = 0x7f2c223e0831 "",
+            table_name_length = 729, query = 0x7f2c47bb0ce0 "\320\034\330\001", query_length = 79}}
+        rc = <optimized out>
+        classic = true
+#18 0x0000000000d8ad38 in handle_connection (arg=arg@entry=0x302b220)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/sql/conn_handler/connection_handler_per_thread.cc:300
+        psi = <optimized out>
+        thd_manager = 0x246ba70
+        handler_manager = 0x23a7710
+        channel_info = <optimized out>
+        pthread_reused = <optimized out>
+#19 0x000000000126de04 in pfs_spawn_thread (arg=0x352eae0)
+    at /export/home2/pb2/build/sb_1-23948522-1498141788.79/rpm/BUILD/mysql-5.7.19/mysql-5.7.19/storage/perfschema/pfs.cc:2188
+        typed_arg = 0x352eae0
+        user_arg = 0x302b220
+        pfs = <optimized out>
+        user_start_routine = 0xd8aab0 <handle_connection(void*)>
+        klass = <optimized out>
+#20 0x00007f2c9f5ade25 in start_thread (arg=0x7f2c60067700) at pthread_create.c:308
+        __res = <optimized out>
+        pd = 0x7f2c60067700
+        now = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {139828566324992, 1692664296740947000, 0, 139828566325696,
+                139828566324992, 6, -1646825179688795080, -1646994201224608712}, mask_was_saved = 0}},
+          priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = <optimized out>
+        pagesize_m1 = <optimized out>
+        sp = <optimized out>
+        freesize = <optimized out>
+#21 0x00007f2c9e06a34d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:113
+No locals.
